@@ -6,4 +6,4 @@ project(fsman)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/inc)
 
 add_executable(fsman src/maingui.cpp)
-target_link_libaries(fsman archive)
+target_link_libraries(fsman archive)
