@@ -7,6 +7,13 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/inc)
 
 add_executable(fsman src/maingui.cpp)
 
+if (MSVC)
+    add_compile_options(-Zi -W4)
+else()
+    # fail until we target more platforms
+    message(FATAL_ERROR "compiler not supported")
+endif()
+
 target_link_options(fsman PRIVATE -ENTRY:mainCRTStartup)
 
 # Note: the user must _NOT_ specify relative paths to the CMAKE_PREFIX_PATH
