@@ -8,7 +8,11 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/inc)
 add_executable(fsman src/maingui.cpp)
 
 if (MSVC)
-    add_compile_options(-Zi -W4)
+    add_compile_options(-Zi
+                        -W4
+                        -EHsc
+                        -D_CRT_SECURE_NO_WARNINGS
+                        -DSTRICT)
 else()
     # fail until we target more platforms
     message(FATAL_ERROR "compiler not supported")
