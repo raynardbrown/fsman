@@ -5,7 +5,9 @@ project(fsman)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/inc)
 
-add_executable(fsman src/maingui.cpp)
+set(Sources src/maingui.cpp)
+
+add_executable(fsman ${Sources})
 
 if (MSVC)
     add_compile_options(-Zi
