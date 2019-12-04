@@ -7,8 +7,6 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/inc)
 
 set(Sources src/maingui.cpp)
 
-add_executable(fsman ${Sources})
-
 if (MSVC)
     add_compile_options(-Zi
                         -W4
@@ -22,7 +20,9 @@ else()
     message(FATAL_ERROR "compiler not supported")
 endif()
 
-target_link_options(fsman PRIVATE -ENTRY:mainCRTStartup)
+add_executable(${PROJECT_NAME} ${Sources})
+
+target_link_options(${PROJECT_NAME} PRIVATE -ENTRY:mainCRTStartup)
 
 # Note: the user must _NOT_ specify relative paths to the CMAKE_PREFIX_PATH
 # variable via the command line or the CMake generation will fail. I believe
@@ -35,4 +35,4 @@ if(NOT UI_LAYOUT_LIBRARY)
   message(FATAL_ERROR "ui_layout library not found")
 endif()
 
-target_link_libraries(fsman ${UI_LAYOUT_LIBRARY})
+target_link_libraries(${PROJECT_NAME} ${UI_LAYOUT_LIBRARY})
