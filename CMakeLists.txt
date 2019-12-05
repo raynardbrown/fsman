@@ -15,14 +15,14 @@ if (MSVC)
                         -DSTRICT
                         -DUNICODE
                         -D_UNICODE)
+                        
+    target_link_options(${PROJECT_NAME} PRIVATE -ENTRY:mainCRTStartup)
 else()
     # fail until we target more platforms
     message(FATAL_ERROR "compiler not supported")
 endif()
 
 add_executable(${PROJECT_NAME} ${Sources})
-
-target_link_options(${PROJECT_NAME} PRIVATE -ENTRY:mainCRTStartup)
 
 # Note: the user must _NOT_ specify relative paths to the CMAKE_PREFIX_PATH
 # variable via the command line or the CMake generation will fail. I believe
