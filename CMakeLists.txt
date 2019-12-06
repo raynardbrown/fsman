@@ -15,8 +15,6 @@ if (MSVC)
                         -DSTRICT
                         -DUNICODE
                         -D_UNICODE)
-                        
-    target_link_options(${PROJECT_NAME} PRIVATE -ENTRY:mainCRTStartup)
 else()
     # fail until we target more platforms
     message(FATAL_ERROR "compiler not supported")
@@ -33,6 +31,13 @@ find_library(UI_LAYOUT_LIBRARY ui_layout PATHS ${CMAKE_PREFIX_PATH}/ui_layout/bu
 # the library, fail with a fatal error and output a message to the user.
 if(NOT UI_LAYOUT_LIBRARY)
   message(FATAL_ERROR "ui_layout library not found")
+endif()
+
+if (MSVC)
+    target_link_options(${PROJECT_NAME} PRIVATE -ENTRY:mainCRTStartup)
+else()
+    # fail until we target more platforms
+    message(FATAL_ERROR "compiler not supported")
 endif()
 
 target_link_libraries(${PROJECT_NAME} ${UI_LAYOUT_LIBRARY})
