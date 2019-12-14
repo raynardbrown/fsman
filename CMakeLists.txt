@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 3.15.5)
 # Set the name of the project and store it in a variable, PROJECT_NAME.
 project(fsman)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/inc)
+set(Headers "")
+list(APPEND Headers ${CMAKE_CURRENT_SOURCE_DIR}/inc)
 
 set(Sources src/maingui.cpp)
 
@@ -41,3 +42,5 @@ else()
 endif()
 
 target_link_libraries(${PROJECT_NAME} ${UI_LAYOUT_LIBRARY})
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${Headers})
