@@ -21,7 +21,7 @@ else()
     message(FATAL_ERROR "compiler not supported")
 endif()
 
-add_executable(${PROJECT_NAME} ${Sources})
+set(Libraries "")
 
 # Note: the user must _NOT_ specify relative paths to the CMAKE_PREFIX_PATH
 # variable via the command line or the CMake generation will fail. I believe
@@ -34,6 +34,10 @@ if(NOT UI_LAYOUT_LIBRARY)
   message(FATAL_ERROR "ui_layout library not found")
 endif()
 
+list(APPEND Libraries ${UI_LAYOUT_LIBRARY})
+
+add_executable(${PROJECT_NAME} ${Sources})
+
 if (MSVC)
     target_link_options(${PROJECT_NAME} PRIVATE -SUBSYSTEM:WINDOWS
                                                 -ENTRY:mainCRTStartup)
@@ -42,6 +46,6 @@ else()
     message(FATAL_ERROR "compiler not supported")
 endif()
 
-target_link_libraries(${PROJECT_NAME} ${UI_LAYOUT_LIBRARY})
+target_link_libraries(${PROJECT_NAME} ${Libraries})
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${Headers})
