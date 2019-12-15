@@ -35,7 +35,8 @@ if(NOT UI_LAYOUT_LIBRARY)
 endif()
 
 if (MSVC)
-    target_link_options(${PROJECT_NAME} PRIVATE -ENTRY:mainCRTStartup)
+    target_link_options(${PROJECT_NAME} PRIVATE -SUBSYSTEM:WINDOWS
+                                                -ENTRY:mainCRTStartup)
 else()
     # fail until we target more platforms
     message(FATAL_ERROR "compiler not supported")
