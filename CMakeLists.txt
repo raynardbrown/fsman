@@ -36,6 +36,22 @@ endif()
 
 list(APPEND Libraries ${UI_LAYOUT_LIBRARY})
 
+find_library(UI_LIBRARY ui PATH_SUFFIXES ui/build)
+
+if(NOT UI_LIBRARY)
+  message(FATAL_ERROR "ui library not found")
+endif()
+
+list(APPEND Libraries ${UI_LIBRARY})
+
+find_path(UI_INCLUDE NAMES Window.h PATH_SUFFIXES ui/inc)
+
+if(NOT UI_INCLUDE)
+  message(FATAL_ERROR "ui headers not found")
+endif()
+
+list(APPEND Headers ${UI_INCLUDE})
+
 add_executable(${PROJECT_NAME} ${Sources})
 
 if (MSVC)
