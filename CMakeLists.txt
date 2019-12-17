@@ -52,6 +52,14 @@ endif()
 
 list(APPEND Headers ${UI_INCLUDE})
 
+find_library(STRING_EXTRAS_LIBRARY string_extras PATH_SUFFIXES string_extras/build)
+
+if(NOT STRING_EXTRAS_LIBRARY)
+  message(FATAL_ERROR "string extras library not found")
+endif()
+
+list(APPEND Libraries ${STRING_EXTRAS_LIBRARY})
+
 add_executable(${PROJECT_NAME} ${Sources})
 
 if (MSVC)
