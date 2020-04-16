@@ -118,7 +118,8 @@ add_executable(${PROJECT_NAME} WIN32 ${Sources})
 
 if (MSVC)
     target_link_options(${PROJECT_NAME} PRIVATE -SUBSYSTEM:WINDOWS
-                                                -ENTRY:mainCRTStartup)
+                                                -ENTRY:mainCRTStartup
+                                                -INCREMENTAL:NO)
 else()
     # fail until we target more platforms
     message(FATAL_ERROR "compiler not supported")
