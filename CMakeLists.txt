@@ -114,7 +114,7 @@ list(APPEND Libraries ${STRING_EXTRAS_LIBRARY})
 # Executable and its options
 ################################################################################
 
-add_executable(${PROJECT_NAME} ${Sources})
+add_executable(${PROJECT_NAME} WIN32 ${Sources})
 
 if (MSVC)
     target_link_options(${PROJECT_NAME} PRIVATE -SUBSYSTEM:WINDOWS
