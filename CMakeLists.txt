@@ -70,6 +70,14 @@ endif()
 
 list(APPEND Libraries ${UI_LAYOUT_LIBRARY})
 
+find_path(UI_LAYOUT_INCLUDE NAMES ui/layout/ILayout.h PATH_SUFFIXES ui_layout/inc)
+
+if(NOT UI_LAYOUT_INCLUDE)
+  message(FATAL_ERROR "ui layout headers not found")
+endif()
+
+list(APPEND Headers ${UI_LAYOUT_INCLUDE})
+
 ################################################################################
 # String Extras Library
 ################################################################################
