@@ -13,6 +13,10 @@ set(Headers "")
 list(APPEND Headers ${CMAKE_CURRENT_SOURCE_DIR}/inc)
 list(APPEND Headers ${Boost_INCLUDE_DIRS})
 
+################################################################################
+# Source files and compiler options
+################################################################################
+
 set(Sources src/maingui.cpp)
 
 if (MSVC)
@@ -33,6 +37,11 @@ set(Libraries "")
 # Note: the user must _NOT_ specify relative paths to the CMAKE_PREFIX_PATH
 # variable via the command line or the CMake generation will fail. I believe
 # this behavior is a limitation of CMake.
+
+################################################################################
+# UI Layout Library and Headers
+################################################################################
+
 find_library(UI_LAYOUT_LIBRARY ui_layout PATH_SUFFIXES ui_layout/build)
 
 # Verify that CMake has found the ui_layout library. If CMake is unable to find
@@ -42,6 +51,10 @@ if(NOT UI_LAYOUT_LIBRARY)
 endif()
 
 list(APPEND Libraries ${UI_LAYOUT_LIBRARY})
+
+################################################################################
+# UI Library and Headers
+################################################################################
 
 find_library(UI_LIBRARY ui PATH_SUFFIXES ui/build)
 
@@ -59,6 +72,10 @@ endif()
 
 list(APPEND Headers ${UI_INCLUDE})
 
+################################################################################
+# String Extras Library
+################################################################################
+
 find_library(STRING_EXTRAS_LIBRARY string_extras PATH_SUFFIXES string_extras/build)
 
 if(NOT STRING_EXTRAS_LIBRARY)
@@ -66,6 +83,10 @@ if(NOT STRING_EXTRAS_LIBRARY)
 endif()
 
 list(APPEND Libraries ${STRING_EXTRAS_LIBRARY})
+
+################################################################################
+# Executable and its options
+################################################################################
 
 add_executable(${PROJECT_NAME} ${Sources})
 
