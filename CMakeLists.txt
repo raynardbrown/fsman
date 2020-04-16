@@ -39,20 +39,6 @@ set(Libraries "")
 # this behavior is a limitation of CMake.
 
 ################################################################################
-# UI Layout Library and Headers
-################################################################################
-
-find_library(UI_LAYOUT_LIBRARY ui_layout PATH_SUFFIXES ui_layout/build)
-
-# Verify that CMake has found the ui_layout library. If CMake is unable to find
-# the library, fail with a fatal error and output a message to the user.
-if(NOT UI_LAYOUT_LIBRARY)
-  message(FATAL_ERROR "ui_layout library not found")
-endif()
-
-list(APPEND Libraries ${UI_LAYOUT_LIBRARY})
-
-################################################################################
 # UI Library and Headers
 ################################################################################
 
@@ -71,6 +57,18 @@ if(NOT UI_INCLUDE)
 endif()
 
 list(APPEND Headers ${UI_INCLUDE})
+
+################################################################################
+# UI Layout Library and Headers
+################################################################################
+
+find_library(UI_LAYOUT_LIBRARY ui_layout PATH_SUFFIXES ui_layout/build)
+
+if(NOT UI_LAYOUT_LIBRARY)
+  message(FATAL_ERROR "ui layout library not found")
+endif()
+
+list(APPEND Libraries ${UI_LAYOUT_LIBRARY})
 
 ################################################################################
 # String Extras Library
