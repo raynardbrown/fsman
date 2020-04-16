@@ -39,6 +39,26 @@ set(Libraries "")
 # this behavior is a limitation of CMake.
 
 ################################################################################
+# Graphics Library and Headers
+################################################################################
+
+find_library(GRAPHICS_LIBRARY graphics PATH_SUFFIXES graphics/build)
+
+if(NOT GRAPHICS_LIBRARY)
+  message(FATAL_ERROR "graphics library not found")
+endif()
+
+list(APPEND Libraries ${GRAPHICS_LIBRARY})
+
+find_path(GRAPHICS_INCLUDE NAMES graphics/Color.h PATH_SUFFIXES graphics/inc)
+
+if(NOT GRAPHICS_INCLUDE)
+  message(FATAL_ERROR "graphics headers not found")
+endif()
+
+list(APPEND Headers ${GRAPHICS_INCLUDE})
+
+################################################################################
 # UI Library and Headers
 ################################################################################
 
