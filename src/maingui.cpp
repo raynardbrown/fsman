@@ -10,7 +10,21 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+#include "ui/UiApplication.h"
+
+#include "FsManGui.h"
+
 int main(int argc, char ** argv)
 {
-  return 0;
+  UiApplication app(argc,  argv);
+
+  int exitCode = 0;
+
+  FsManGui * fsManGui = new FsManGui();
+
+  fsManGui->showWindow();
+
+  exitCode = app.run(fsManGui);
+
+  return exitCode;
 }
