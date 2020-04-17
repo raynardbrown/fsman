@@ -28,6 +28,10 @@ if (MSVC)
                         -DSTRICT
                         -DUNICODE
                         -D_UNICODE)
+
+    set(Sources_Windows res/fsman.manifest)
+    
+    list(APPEND Sources ${Sources_Windows})
 else()
     # fail until we target more platforms
     message(FATAL_ERROR "compiler not supported")
